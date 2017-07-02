@@ -6,9 +6,18 @@ import Citations from './citations';
 class App extends Component {
   state = {
   };
+
+  componentWillMount() {
+    this.changeCitation();
+  }
+
   changeCitation = event => {
     const key = Object.keys(Citations);
     const randomKey = key[Math.floor(Math.random() * key.length)];
+    if(this.state.citation === Citations[randomKey].citation){
+      this.changeCitation();
+      return
+    }
     this.setState(Citations[randomKey]);
   }
   render() {
